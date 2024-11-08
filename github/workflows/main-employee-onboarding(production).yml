@@ -85,16 +85,19 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: Install dependencies
+      - name: Install dependencies for client (React app)
         run: |
           cd client
           npm install
 
       - name: Build React app
-        run: npm run build --prefix client
+        run: |
+          cd client
+          npm run build
 
-      - name: Zip artifact for deployment
-        run: zip -r release.zip ./client/build ./server
+      - name: Zip frontend and backend artifacts
+        run: |
+          zip -r release.zip ./client/build ./server  # Ensure both frontend and backend are included
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -127,10 +130,10 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: 'Deploy to Azure Web App'
+      - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'employee-onboarding'
           slot-name: 'production'
-          package: .  # If package points to the right folder containing frontend and backend artifacts
+          package: .  # Ensure this points to the correct folder containing both frontend and backend

@@ -7,7 +7,7 @@
   "dev": "concurrently \"npm run dev --prefix client\" \"npm run server --prefix server\"",
   "server": "node server/server.js",
   "build": "npm run build --prefix client",
-"deploy": "npm run build && git add . && git commit -m \"Deploy to Azure\" && git push origin main", 
+"deploy": "npm run build && git add . && git commit -m \"Deploy to Azure Correction\" && git push origin main", 
   "test": "echo \"Write tests!\" && exit 0"
 },
 
