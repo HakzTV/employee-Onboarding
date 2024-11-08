@@ -35,7 +35,13 @@ jobs:
           cd client
           npm run build
 
-      # Zip frontend and backend artifacts for deployment
+      # Install dependencies for server (Express app)
+      - name: Install dependencies for server (Express app)
+        run: |
+          cd server
+          npm install
+
+      # Zip frontend (client) and backend (server) artifacts for deployment
       - name: Zip frontend and backend artifacts
         run: |
           zip -r release.zip ./client/dist ./server  # Ensure both frontend and backend are included
@@ -80,4 +86,4 @@ jobs:
         with:
           app-name: 'employee-onboarding'
           slot-name: 'production'
-          package: .  # Ensure this points to the correct folder containing both frontend and backend
+          package: .  # Deploy from the root folder, which contains both the frontend and backend
