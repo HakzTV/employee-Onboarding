@@ -38,7 +38,7 @@ jobs:
       # Zip frontend and backend artifacts for deployment
       - name: Zip frontend and backend artifacts
         run: |
-          zip -r release.zip ./client/build ./server  # Ensure both frontend and backend are included
+          zip -r release.zip ./client/dist ./server  # Ensure both frontend and backend are included
 
       # Upload artifact for deployment job
       - name: Upload artifact for deployment job
