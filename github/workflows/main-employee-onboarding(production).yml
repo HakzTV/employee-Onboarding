@@ -27,7 +27,13 @@ jobs:
       - name: Install dependencies for client (React app)
         run: |
           cd client
-          npm install
+          npm install --legacy-peer-deps  # Add flag for legacy dependency resolutions if needed
+
+      # Verify if @vitejs/plugin-react is installed
+      - name: Check if @vitejs/plugin-react is installed
+        run: |
+          cd client
+          npm list @vitejs/plugin-react  # This will confirm if the package is installed
 
       # Build React app
       - name: Build React app
