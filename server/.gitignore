@@ -1,0 +1,9 @@
+# Node modules
+node_modules/
+
+# .env files (Backend secrets)
+.env
+.env.local
+
+# Logs and other temporary files
+*.log
